@@ -1,3 +1,4 @@
+using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -6,6 +7,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using SpaceTestProject.Application.Options;
 using SpaceTestProject.Application.Services.ImdbApiService;
+using SpaceTestProject.Application.Titles.Queries.GetAll;
 
 namespace SpaceTestProject.Api
 {
@@ -29,6 +31,8 @@ namespace SpaceTestProject.Api
 
             services.Configure<ImdbSettingsOptions>(Configuration.GetSection(ImdbSettingsOptions.SECTION_NAME));
             services.AddTransient<IImdbApiService, ImdbApiService>();
+            services.AddHttpClient();
+            services.AddMediatR(typeof(GetAllTitlesQuery).Assembly);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
