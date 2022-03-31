@@ -1,6 +1,7 @@
 using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -8,6 +9,9 @@ using Microsoft.OpenApi.Models;
 using SpaceTestProject.Application.Options;
 using SpaceTestProject.Application.Services.ImdbApiService;
 using SpaceTestProject.Application.Titles.Queries.GetAll;
+using SpaceTestProject.Persistence;
+using SpaceTestProject.Persistence.Abstractions;
+using SpaceTestProject.Persistence.Contexts;
 
 namespace SpaceTestProject.Api
 {
@@ -28,9 +32,14 @@ namespace SpaceTestProject.Api
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "SpaceTestProject", Version = "v1" });
             });
+            
+            services.AddDbContext<ApplicationDbContext>(options =>
+                options.UseSqlServer(Configuration.GetConnectionString("ImdbIntegrationDb"),
+                    b => b.MigrationsAssembly("SpaceTestProject.Api")));
 
             services.Configure<ImdbSettingsOptions>(Configuration.GetSection(ImdbSettingsOptions.SECTION_NAME));
             services.AddTransient<IImdbApiService, ImdbApiService>();
+            services.AddTransient(typeof(IRepository<>), typeof(Repository<>));
             services.AddHttpClient();
             services.AddMediatR(typeof(GetAllTitlesQuery).Assembly);
         }
