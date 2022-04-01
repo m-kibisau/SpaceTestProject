@@ -8,7 +8,7 @@ namespace SpaceTestProject.Application.Services.ImdbApiService
     public interface IImdbApiService
     {
         Task<SearchData> SearchByName(string expression);
-        Task<TitleData> GetTitleById(string id, ImmutableList<string> options);
+        Task<TitleData> GetTitleById(string id, ImmutableList<string> options = null);
         Task<PosterData> GetPosterById(string titleId);
         Task<WikipediaData> GetWikipediaDescriptionById(string id);
     }

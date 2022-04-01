@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using MediatR;
-using SpaceTestProject.Application.Models.Common;
+using SpaceTestProject.Application.Models.CommonResponse;
 using SpaceTestProject.Application.Models.Titles;
 
 namespace SpaceTestProject.Application.Titles.Queries.GetAll

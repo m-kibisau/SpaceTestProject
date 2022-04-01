@@ -1,8 +1,8 @@
 ﻿using System;
 
-namespace SpaceTestProject.Domain
+namespace SpaceTestProject.Application.Models.WatchListItems
 {
-    public class WatchListItem
+    public class WatchListItemDto
     {
         public Guid Id { get; set; }
         public int UserId { get; set; }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.IO;
 using System.Net.Http;
@@ -61,11 +62,11 @@ namespace SpaceTestProject.Application.Services.ImdbApiService
             }
         }
 
-        public async Task<TitleData> GetTitleById(string id, ImmutableList<string> options)
+        public async Task<TitleData> GetTitleById(string id, ImmutableList<string> options = null)
         {
             try
             {
-                var joinOptions = string.Join(",", options);
+                var joinOptions = string.Join(",", options ?? ImmutableList.Create<string>());
 
                 var path = string.Format(GetTitleByIdUrl, _imdbSettingsOptions.ApiKey, id, joinOptions);
 

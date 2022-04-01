@@ -1,4 +1,4 @@
-﻿namespace SpaceTestProject.Application.Models.Common
+﻿namespace SpaceTestProject.Application.Models.CommonResponse
 {
     public class BusinessMessage
     {

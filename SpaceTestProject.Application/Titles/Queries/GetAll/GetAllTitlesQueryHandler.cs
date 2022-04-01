@@ -6,7 +6,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using MediatR;
 using SpaceTestProject.Application.Infrastructure;
-using SpaceTestProject.Application.Models.Common;
+using SpaceTestProject.Application.Models.CommonResponse;
 using SpaceTestProject.Application.Models.Titles;
 using SpaceTestProject.Application.Services.ImdbApiService;
 
