@@ -12,5 +12,10 @@ namespace SpaceTestProject.Application.WatchListItems.Queries.GetNotWatchedByUse
     public class GetNotWatchedWatchListItemsByUserIdQuery : IRequest<Result<List<WatchListItemDto>>>
     {
         public int UserId { get; set; }
+
+        public GetNotWatchedWatchListItemsByUserIdQuery(int userId)
+        {
+            UserId = userId;
+        }
     }
 }

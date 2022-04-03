@@ -130,7 +130,7 @@ namespace SpaceTestProject.Application.Services.ImdbApiService
         {
             try
             {
-                var path = string.Format(GetPosterByIdUrl, _imdbSettingsOptions.ApiKey, id);
+                var path = string.Format(GetWikipediaDescriptionByIdUrl, _imdbSettingsOptions.ApiKey, id);
 
                 var httpClient = _httpClientFactory.CreateClient();
                 var result = await httpClient.GetAsync(string.Concat(_imdbSettingsOptions.BaseImdbUrl, path));
