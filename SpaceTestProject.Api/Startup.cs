@@ -10,7 +10,6 @@ using Microsoft.OpenApi.Models;
 using SpaceTestProject.Api.BackgroundServices;
 using SpaceTestProject.Application.Options;
 using SpaceTestProject.Application.Services.ImdbApiService;
-using SpaceTestProject.Application.Services.RemindingEmailService;
 using SpaceTestProject.Application.Titles.Queries.GetAll;
 using SpaceTestProject.Application.WatchListItems.Commands.Add;
 using SpaceTestProject.Persistence;

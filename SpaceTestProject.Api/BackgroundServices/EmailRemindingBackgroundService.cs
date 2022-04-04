@@ -10,8 +10,6 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using SpaceTestProject.Application.Options;
 using SpaceTestProject.Application.RemindingEmails.SendToAllUsers;
-using SpaceTestProject.Application.Services.RemindingEmailService;
-using SpaceTestProject.Application.WatchListItems.Queries.GetNotWatchedByUserId;
 
 namespace SpaceTestProject.Api.BackgroundServices
 {
