@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
@@ -21,12 +21,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\SpaceTestProject.Application\SpaceTestProject.Application.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Include="response_1648546522669.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
   </ItemGroup>
 
 </Project>
