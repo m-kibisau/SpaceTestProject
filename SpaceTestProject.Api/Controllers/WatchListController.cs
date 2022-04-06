@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Cryptography.X509Certificates;
 using System.Threading.Tasks;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
@@ -11,6 +8,9 @@ using SpaceTestProject.Application.WatchListItems.Queries.GetByUserId;
 
 namespace SpaceTestProject.Api.Controllers
 {
+    /// <summary>
+    /// Operations with watch list
+    /// </summary>
     [ApiController]
     [Route("[controller]")]
     public class WatchListController : ControllerBase
@@ -26,8 +26,6 @@ namespace SpaceTestProject.Api.Controllers
         /// <summary>
         /// Add new item to watch list
         /// </summary>
-        /// <param name="command"></param>
-        /// <returns></returns>
         [HttpPost]
         [Route("add")]
         public async Task<ActionResult> AddWatchListItem([FromBody] AddWatchListItemCommand command)
@@ -45,8 +43,6 @@ namespace SpaceTestProject.Api.Controllers
         /// <summary>
         /// Mark record as watched
         /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
         [HttpPut]
         [Route("{id}/MarkAsWatched")]
         public async Task<ActionResult> MarkWatchListItemAsWatched(Guid id)
@@ -65,8 +61,6 @@ namespace SpaceTestProject.Api.Controllers
         /// <summary>
         /// Get Watch list by user id
         /// </summary>
-        /// <param name="userId"></param>
-        /// <returns></returns>
         [HttpGet]
         [Route("user/{userId}")]
         public async Task<ActionResult> GetWatchListByUserId(int userId)

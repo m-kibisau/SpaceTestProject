@@ -1,14 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using MediatR;
 using SpaceTestProject.Application.Infrastructure;
 using SpaceTestProject.Application.Models.CommonResponse;
 using SpaceTestProject.Application.Models.WatchListItems;
-using SpaceTestProject.Application.WatchListItems.Queries.GetByUserId;
 using SpaceTestProject.Application.WatchListItems.Specifications;
 using SpaceTestProject.Domain;
 using SpaceTestProject.Persistence.Abstractions;

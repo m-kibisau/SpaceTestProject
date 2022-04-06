@@ -1,12 +1,13 @@
 ﻿using System.Threading.Tasks;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
-using SpaceTestProject.Application.Services.ImdbApiService;
 using SpaceTestProject.Application.Titles.Queries.GetAll;
 
 namespace SpaceTestProject.Api.Controllers
 {
+    /// <summary>
+    /// Search titles in IMDB
+    /// </summary>
     [ApiController]
     [Route("[controller]")]
     public class TitleController : ControllerBase
@@ -19,12 +20,10 @@ namespace SpaceTestProject.Api.Controllers
         }
 
         /// <summary>
-        /// Поиск фильмов по названию
+        /// Search films by name
         /// </summary>
-        /// <param name="expression"></param>
-        /// <returns></returns>
         [HttpGet]
-        [Route("search")]
+        [Route("searchByName")]
         public async Task<ActionResult> Search([FromQuery] string expression)
         {
             var result = await _mediator.Send(new GetAllTitlesQuery(expression));

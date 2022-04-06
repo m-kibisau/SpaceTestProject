@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Threading.Tasks;
 using MediatR;
 
 namespace SpaceTestProject.Application.RemindingEmails.SendToAllUsers

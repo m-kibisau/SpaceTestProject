@@ -1,3 +1,5 @@
+using System;
+using System.IO;
 using FluentValidation.AspNetCore;
 using MediatR;
 using Microsoft.AspNetCore.Builder;
@@ -38,6 +40,9 @@ namespace SpaceTestProject.Api
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "SpaceTestProject", Version = "v1" });
+
+                string filePath = Path.Combine(AppContext.BaseDirectory, typeof(Startup).Assembly.GetName().Name + ".xml");
+                c.IncludeXmlComments(filePath);
             });
             
             services.AddDbContext<ApplicationDbContext>(options =>
@@ -65,6 +70,7 @@ namespace SpaceTestProject.Api
             {
                 app.UseDeveloperExceptionPage();
                 app.UseSwagger();
+
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "SpaceTestProject v1"));
             }
 

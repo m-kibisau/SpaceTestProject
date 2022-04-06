@@ -1,5 +1,4 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using SpaceTestProject.Domain;
 
 namespace SpaceTestProject.Persistence.Contexts

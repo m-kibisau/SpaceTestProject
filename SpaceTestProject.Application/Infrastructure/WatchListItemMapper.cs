@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using SpaceTestProject.Application.Models.WatchListItems;
+﻿using SpaceTestProject.Application.Models.WatchListItems;
 using SpaceTestProject.Application.WatchListItems.Commands.Add;
 using SpaceTestProject.Domain;
 

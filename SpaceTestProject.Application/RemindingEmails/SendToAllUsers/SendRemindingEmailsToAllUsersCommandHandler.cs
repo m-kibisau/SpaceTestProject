@@ -1,10 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Globalization;
 using System.Linq;
 using System.Net;
 using System.Net.Mail;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using MediatR;
@@ -14,7 +12,6 @@ using SpaceTestProject.Application.Models.ImdbApiService;
 using SpaceTestProject.Application.Models.WatchListItems;
 using SpaceTestProject.Application.Options;
 using SpaceTestProject.Application.Services.ImdbApiService;
-using SpaceTestProject.Application.Services.RemindingEmailService;
 using SpaceTestProject.Application.WatchListEmailLogs.Specifications;
 using SpaceTestProject.Application.WatchListItems.Queries.GetNotWatchedByUserId;
 using SpaceTestProject.Domain;

@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using MediatR;
@@ -49,20 +47,30 @@ namespace SpaceTestProject.Api.BackgroundServices
 
             while (!stoppingToken.IsCancellationRequested)
             {
-                _logger.LogInformation("Time to completion is {0}", delayTime);
-                await Task.Delay(delayTime, stoppingToken);
+                try
+                {
+                    _logger.LogInformation("Time to completion is {0}", delayTime);
+                    await Task.Delay(delayTime, stoppingToken);
 
-                _logger.LogInformation("Start sending reminding emails");
+                    _logger.LogInformation("Start sending reminding emails");
 
-                using var scope = _scopeFactory.CreateScope();
-                var mediator = scope.ServiceProvider.GetRequiredService<IMediator>();
+                    using var scope = _scopeFactory.CreateScope();
+                    var mediator = scope.ServiceProvider.GetRequiredService<IMediator>();
 
-                var result = await mediator.Send(new SendRemindingEmailsToAllUsersCommand(_options.TimeToRepeatRemindingEmail), stoppingToken);
-                
-                delayTime = _options.IntervalBetweenRemindingEmails;
+                    var result =
+                        await mediator.Send(
+                            new SendRemindingEmailsToAllUsersCommand(_options.TimeToRepeatRemindingEmail),
+                            stoppingToken);
+
+                    delayTime = _options.IntervalBetweenRemindingEmails;
+                }
+                catch (Exception ex)
+                {
+                    _logger.LogError(ex, "Error to ");
+                }
             }
 
-            _logger.LogInformation("Background service is stoped");
+            _logger.LogInformation("Background service is stopped");
         }
 
     }
