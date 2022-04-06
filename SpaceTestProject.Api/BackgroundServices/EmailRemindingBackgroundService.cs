@@ -66,7 +66,7 @@ namespace SpaceTestProject.Api.BackgroundServices
                 }
                 catch (Exception ex)
                 {
-                    _logger.LogError(ex, "Error to ");
+                    _logger.LogError(ex.Message, ex);
                 }
             }
 

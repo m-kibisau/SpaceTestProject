@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
+using SpaceTestProject.Application.Extensions;
 using SpaceTestProject.Application.Models.ImdbApiService;
 using SpaceTestProject.Application.Options;
 
@@ -35,20 +36,19 @@ namespace SpaceTestProject.Application.Services.ImdbApiService
             {
                 var path = string.Format(SearchByNameUrl, _imdbSettingsOptions.ApiKey, expression);
 
-                var httpClient = _httpClientFactory.CreateClient();
-                var result = await httpClient.GetAsync(string.Concat(_imdbSettingsOptions.BaseImdbUrl, path));
+                var result =
+                    await _httpClientFactory.GetRequestAsync<SearchData>(
+                        string.Concat(_imdbSettingsOptions.BaseImdbUrl, path));
 
-                if (!result.IsSuccessStatusCode)
+                if (!result.IsSuccess())
                 {
                     return new SearchData()
                     {
-                        ErrorMessage = "Error with http request to external url"
+                        ErrorMessage = result.GetMessageSummary()
                     };
                 }
 
-                var responseContent = await result.Content.ReadAsStringAsync();
-
-                return JsonConvert.DeserializeObject<SearchData>(responseContent);
+                return result.Data;
             }
             catch (Exception ex)
             {
@@ -68,20 +68,17 @@ namespace SpaceTestProject.Application.Services.ImdbApiService
 
                 var path = string.Format(GetTitleByIdUrl, _imdbSettingsOptions.ApiKey, id, joinOptions);
 
-                var httpClient = _httpClientFactory.CreateClient();
-                var result = await httpClient.GetAsync(string.Concat(_imdbSettingsOptions.BaseImdbUrl, path));
-
-                if (!result.IsSuccessStatusCode)
+                var result = await _httpClientFactory.GetRequestAsync<TitleData>(string.Concat(_imdbSettingsOptions.BaseImdbUrl, path));
+                
+                if (!result.IsSuccess())
                 {
                     return new TitleData()
                     {
-                        ErrorMessage = "Error with http request to external url"
+                        ErrorMessage = result.GetMessageSummary()
                     };
                 }
 
-                var responseContent = await result.Content.ReadAsStringAsync();
-
-                return JsonConvert.DeserializeObject<TitleData>(responseContent);
+                return result.Data;
             }
             catch (Exception ex)
             {
@@ -99,20 +96,17 @@ namespace SpaceTestProject.Application.Services.ImdbApiService
             {
                 var path = string.Format(GetPosterByIdUrl, _imdbSettingsOptions.ApiKey, titleId);
 
-                var httpClient = _httpClientFactory.CreateClient();
-                var result = await httpClient.GetAsync(string.Concat(_imdbSettingsOptions.BaseImdbUrl, path));
+                var result = await _httpClientFactory.GetRequestAsync<PosterData>(string.Concat(_imdbSettingsOptions.BaseImdbUrl, path));
 
-                if (!result.IsSuccessStatusCode)
+                if (!result.IsSuccess())
                 {
                     return new PosterData()
                     {
-                        ErrorMessage = "Error with http request to external url"
+                        ErrorMessage = result.GetMessageSummary()
                     };
                 }
 
-                var responseContent = await result.Content.ReadAsStringAsync();
-
-                return JsonConvert.DeserializeObject<PosterData>(responseContent);
+                return result.Data;
             }
             catch (Exception ex)
             {
@@ -130,20 +124,17 @@ namespace SpaceTestProject.Application.Services.ImdbApiService
             {
                 var path = string.Format(GetWikipediaDescriptionByIdUrl, _imdbSettingsOptions.ApiKey, id);
 
-                var httpClient = _httpClientFactory.CreateClient();
-                var result = await httpClient.GetAsync(string.Concat(_imdbSettingsOptions.BaseImdbUrl, path));
+                var result = await _httpClientFactory.GetRequestAsync<WikipediaData>(string.Concat(_imdbSettingsOptions.BaseImdbUrl, path));
 
-                if (!result.IsSuccessStatusCode)
+                if (!result.IsSuccess())
                 {
                     return new WikipediaData()
                     {
-                        ErrorMessage = "Error with http request to external url"
+                        ErrorMessage = result.GetMessageSummary()
                     };
                 }
 
-                var responseContent = await result.Content.ReadAsStringAsync();
-
-                return JsonConvert.DeserializeObject<WikipediaData>(responseContent);
+                return result.Data;
             }
             catch (Exception ex)
             {

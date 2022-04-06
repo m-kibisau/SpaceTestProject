@@ -158,6 +158,11 @@ namespace SpaceTestProject.Application.RemindingEmails.SendToAllUsers
                 
                 double.TryParse(title.IMDbRating.Replace(".", ","), out var titleRating);
 
+                if (titleRating == default)
+                {
+                    _logger.LogCritical("Error to parse rating in title with id {0}. Rating is zero", title.Id);
+                }
+
                 if (resultTitle == null)
                 {
                     resultTitle = new WatchListItemDtoRating(title, titleRating, item.Id);
